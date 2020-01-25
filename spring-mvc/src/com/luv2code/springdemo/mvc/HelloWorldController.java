@@ -13,17 +13,17 @@ public class HelloWorldController {
 	public String showForm() {
 		return "helloworld-form";
 	}
-	
+
 	@RequestMapping("/processForm")
 	public String processForm() {
 		return "helloworld";
 	}
-	
+
 	@RequestMapping("/processFormV2")
 	public String letsShout(HttpServletRequest request, Model model) {
 		String theName = request.getParameter("studentName");
 		theName = theName.toUpperCase();
-		String result = "YO, "+theName+"!";
+		String result = "YO, " + theName + "!";
 		model.addAttribute("message", result);
 		return "helloworld";
 	}
