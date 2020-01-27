@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.luv2code.springdemo.mvc.validation.CustomCode;
+
 public class Customer {
 
 	private String firstName;
@@ -22,6 +24,17 @@ public class Customer {
 	@Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 chars or digits")
 	private String postalCode;	
 	
+	@CustomCode //to change default code (value="CSTM", message="must start with CSTM")
+	private String customCode;
+	
+	
+	
+	public String getCustomCode() {
+		return customCode;
+	}
+	public void setCustomCode(String customCode) {
+		this.customCode = customCode;
+	}
 	public String getPostalCode() {
 		return postalCode;
 	}
