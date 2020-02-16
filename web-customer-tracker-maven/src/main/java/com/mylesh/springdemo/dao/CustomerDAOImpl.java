@@ -29,8 +29,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				
 		// create a query  ... sort by last name
 		Query<Customer> theQuery = 
-				currentSession.createQuery("from Customer order by lastName",
-											Customer.class);
+				currentSession.createQuery
+				("from Customer order by lastName", Customer.class);
 		
 		// execute query and get result list
 		List<Customer> customers = theQuery.getResultList();
@@ -75,7 +75,34 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		theQuery.executeUpdate();		
 	}
+	
+	@Override
+	public List<Customer> searchCustomers(String theSearchName) {
 
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query theQuery = null;
+		
+		// search by name if theSearchName is not empty
+		if (theSearchName != null && theSearchName.trim().length() > 0) {
+
+			// search for firstName or lastName, case insensitive
+			theQuery = 
+					currentSession.createQuery("from Customer where lower(firstName) like :theName "
+							+ "or lower(lastName) like :theName", Customer.class);
+			theQuery.setParameter("theName", theSearchName.toLowerCase() + "%");
+
+		}
+		else {
+			// theSearchName is empty, get all customers
+			theQuery =currentSession.createQuery("from Customer", Customer.class);			
+		}
+		
+		List<Customer> customers = theQuery.getResultList();
+						
+		return customers;
+
+	}
 }
 
 
