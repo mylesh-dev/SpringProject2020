@@ -19,11 +19,11 @@
 
 	<dependencies>
 
-		<!-- Spring MVC support -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${springframework.version}</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>5.2.3.RELEASE</version>
 		</dependency>
 
 		<!-- Spring Security -->
